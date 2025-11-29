@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e91e63;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff4081;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Triangle shape similar to Pydantic AI -->
+  <polygon points="50,10 90,80 10,80" fill="url(#gradient)" />
+  <!-- Inner layers for depth effect -->
+  <polygon points="50,25 75,65 25,65" fill="none" stroke="#fff" stroke-width="2" opacity="0.5"/>
+  <polygon points="50,35 65,55 35,55" fill="none" stroke="#fff" stroke-width="1.5" opacity="0.3"/>
+</svg>

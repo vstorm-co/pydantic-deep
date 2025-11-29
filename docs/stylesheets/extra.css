@@ -1,0 +1,105 @@
+/* Custom styling for pydantic-deep documentation */
+
+:root {
+  --md-primary-fg-color: #e91e63;
+  --md-primary-fg-color--light: #ff4081;
+  --md-primary-fg-color--dark: #c2185b;
+  --md-accent-fg-color: #ff4081;
+}
+
+/* Hero section styling */
+.md-typeset h1 {
+  font-weight: 700;
+  margin-bottom: 0.5em;
+}
+
+/* Code block styling */
+.md-typeset code {
+  background-color: var(--md-code-bg-color);
+  border-radius: 4px;
+  padding: 0.1em 0.3em;
+}
+
+/* Badge styling */
+.md-typeset .badge {
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  border-radius: 4px;
+  font-size: 0.75em;
+  font-weight: 600;
+  margin-right: 0.5em;
+}
+
+.md-typeset .badge--success {
+  background-color: #4caf50;
+  color: white;
+}
+
+.md-typeset .badge--info {
+  background-color: #2196f3;
+  color: white;
+}
+
+/* Feature grid */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.feature-card {
+  padding: 1.5rem;
+  border-radius: 8px;
+  background: var(--md-code-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.feature-card h3 {
+  margin-top: 0;
+  color: var(--md-primary-fg-color);
+}
+
+/* Admonition customization */
+.md-typeset .admonition.tip,
+.md-typeset details.tip {
+  border-color: var(--md-primary-fg-color);
+}
+
+.md-typeset .tip > .admonition-title,
+.md-typeset .tip > summary {
+  background-color: rgba(233, 30, 99, 0.1);
+}
+
+/* Navigation improvements */
+.md-nav__link--active {
+  font-weight: 600;
+}
+
+/* Footer styling */
+.md-footer {
+  margin-top: 2rem;
+}
+
+/* Table styling */
+.md-typeset table:not([class]) {
+  display: table;
+  width: 100%;
+}
+
+.md-typeset table:not([class]) th {
+  background-color: var(--md-primary-fg-color);
+  color: white;
+}
+
+/* Code annotation styling */
+.md-typeset .md-annotation__index {
+  background-color: var(--md-primary-fg-color);
+}
+
+/* Responsive improvements */
+@media screen and (max-width: 76.1875em) {
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}

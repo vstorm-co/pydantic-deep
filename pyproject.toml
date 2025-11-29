@@ -1,0 +1,159 @@
+[project]
+name = "pydantic-deep"
+version = "0.1.0"
+description = "Deep agent framework built on pydantic-ai with planning, filesystem, and subagent capabilities"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "Pydantic Deep Contributors" }
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+dependencies = [
+    "pydantic-ai>=0.1.0",
+    "pydantic>=2.0",
+    "wcmatch>=8.0",
+    "typer>=0.12.0",
+    "httpx>=0.28.1",
+    "pydantic-settings>=2.0.0",
+    "rich>=13.0.0",
+    "prompt-toolkit>=3.0.0",
+]
+
+[project.optional-dependencies]
+sandbox = ["docker>=7.0"]
+
+[project.urls]
+Homepage = "https://github.com/vstorm-co/pydantic-deep"
+Documentation = "https://github.com/vstorm-co/pydantic-deep"
+Repository = "https://github.com/vstorm-co/pydantic-deep"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["pydantic_deep"]
+
+# Dependency groups for development
+[dependency-groups]
+dev = [
+    "pytest>=9.0.0",
+    "pytest-asyncio>=0.23.0",
+    "coverage>=7.0.0",
+]
+lint = [
+    "ruff>=0.8.0",
+    "pyright>=1.1.0",
+    "mypy>=1.0.0",
+]
+docs = [
+    "mkdocs>=1.6.0",
+    "mkdocs-material>=9.5.0",
+    "mkdocstrings>=0.26.0",
+    "mkdocstrings-python>=1.12.0",
+]
+
+# Ruff configuration
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = [
+    "E",      # pycodestyle errors
+    "F",      # Pyflakes
+    "I",      # isort
+    "UP",     # pyupgrade
+    "B",      # flake8-bugbear
+    "SIM",    # flake8-simplify
+    "Q",      # flake8-quotes
+    "RUF100", # unused noqa
+    "C90",    # mccabe complexity
+]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 15
+
+[tool.ruff.format]
+quote-style = "double"
+
+# Pytest configuration
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+asyncio_default_fixture_loop_scope = "function"
+
+# Coverage configuration
+[tool.coverage.run]
+branch = true
+source = ["pydantic_deep"]
+data_file = ".coverage/.coverage"
+
+[tool.coverage.report]
+fail_under = 100
+skip_covered = true
+show_missing = true
+precision = 2
+exclude_lines = [
+    "pragma: no cover",
+    "pragma: lax no cover",
+    "if TYPE_CHECKING:",
+    "@overload",
+    "@abstractmethod",
+    "raise NotImplementedError",
+    "if __name__ == '__main__':",
+    "except ImportError:",
+    "pass",
+    "\\.\\.\\.",
+]
+
+[tool.coverage.html]
+directory = "htmlcov"
+
+# Pyright configuration
+[tool.pyright]
+pythonVersion = "3.10"
+typeCheckingMode = "basic"  # Use basic mode for pragmatic type checking
+include = ["pydantic_deep"]
+exclude = ["**/__pycache__", ".venv*", "site", "playground", "tests", "examples"]
+reportMissingTypeStubs = false
+reportUnknownMemberType = false
+reportUnknownArgumentType = false
+reportUnknownVariableType = false
+reportUnknownParameterType = false
+reportUnusedFunction = false  # Decorators register functions
+reportPrivateUsage = false  # Internal usage is intentional
+reportOptionalMemberAccess = false  # Docker SDK typing issues
+reportCallIssue = false  # TypedDict constructor calls
+reportAssignmentType = false  # Dynamic dict building
+reportTypedDictNotRequiredAccess = false  # NotRequired keys with get()
+
+# MyPy configuration
+[tool.mypy]
+python_version = "3.10"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+disallow_untyped_defs = false
+
+# Codespell configuration
+[tool.codespell]
+skip = ".git,.venv*,uv.lock,site,htmlcov,.coverage"
